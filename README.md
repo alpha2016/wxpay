@@ -35,7 +35,7 @@
 （11）未收到支付通知的情况，商户后台系统调用【查询订单API】。  
 （12）商户确认订单已支付后给用户发货。  
 
-**几个坑点：**
+**几个坑点：**  
 1. curl 60错误：  
 http://www.mamicode.com/info-detail-923818.html  这里有解决方案，因为curl采用了严格模式，改一下WxApi.class.php就解决  
 2. 微信服务器不回调notify_url  
@@ -45,7 +45,7 @@ $url = '###'; //一个发送邮件的链接
 file_get_content($url);
 echo 'SUCCESS';  //必须给微信返回成功，否则微信服务器将请求多次此链接
 ```
-3.  微信服务器多次请求notify_url  
+3. 微信服务器多次请求notify_url  
 解决方案如上的代码，结尾`'echo 'SUCCESS';'`一下就可以的，微信服务器就知道成功了  
 
 `' 其他遇到再补充'`  
