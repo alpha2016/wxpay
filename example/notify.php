@@ -26,7 +26,9 @@ class PayNotifyCallBack extends WxPayNotify
 
 	//重写回调处理函数
 	/**
-	* 回调函数可以先写一个小功能，然后
+	* 微信限制：notify_url不能传任何参数，建议.php可以直接访问的
+	* 回调函数可以先写一个小功能，然后检测是是否成功回调了
+	* 以下是将xml转成数组的方法
 	*/
 	public function NotifyProcess($data, &$msg)
 	{

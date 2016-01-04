@@ -13,7 +13,7 @@ require_once "../lib/WxPay.Api.php";
  */
 $input = new WxPayUnifiedOrder();
 $input->SetBody("hsdajdsagfyjdas,gyaw,gf bvdasf,b jsdaf mdas das gfbxzcncncncncncncncndvgs ");
-$input->SetAttach("ahhahah ");
+$input->SetAttach("ahhahah");
 $input->SetOut_trade_no(MCHID.date("YmdHis"));
 $input->SetTotal_fee("1");
 $input->SetTime_start(date("YmdHis"));
@@ -23,6 +23,8 @@ $input->SetNotify_url("http://localhost/wxpay/example/notify.php");  //回调函
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");   //native方式必须穿product_id
 $result = WxPayApi::GetPayUrl($input);
+/*var_dump($input);
+var_dump($result);   //打印参数，更直观*/
 $url2 = $result["code_url"];
 ?>
 
