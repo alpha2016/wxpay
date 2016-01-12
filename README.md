@@ -35,7 +35,6 @@
 （11）未收到支付通知的情况，商户后台系统调用【查询订单API】。  
 （12）商户确认订单已支付后给用户发货。  
 
-**几个坑点：**  
 1. curl 60错误：  
 http://www.mamicode.com/info-detail-923818.html  这里有解决方案，因为curl采用了严格模式，改一下WxApi.class.php就解决  
 2. 微信服务器不回调notify_url  
@@ -48,4 +47,41 @@ echo 'SUCCESS';  //必须给微信返回成功，否则微信服务器将请求�
 3. 微信服务器多次请求notify_url  
 解决方案如上的代码，结尾`'echo 'SUCCESS';'`一下就可以的，微信服务器就知道成功了  
 
-`' 其他遇到再补充'`  
+4. 微信接收微信支付成功账号的参数
+ 微信并未提供接受方法，最基础可以使用
+```
+ // 接收xml格式数据然后处理成数组
+$xml = file_get_content("php://input");
+libxml_disable_entity_loader(true);
+$array = json_decode(json_encode(simplexml_load_string($xml 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+```
+5. 页面跳转友好性
+微信的回调只是回调，对页面没有任何影响，在支付成功之后，想跳转页面，使用js的setInterval函数，隔一段时间带上订单号请求一个状态的接口就可以的。
+```
+ // 每半秒请求一次数据，然后判断，跳转，增加用户友好性
+$(function(){
+        orderno = $('###').val();
+        start = self.setInterval("checkstatus(orderno)", 500);
+    });
+
+    function checkstatus(order_no){
+        if(order_no == undefined || order_no == ''){
+            window.clearInterval(start);
+        }
+        else{
+            $.ajax({
+                url:"#####",
+                type:'POST',
+                data:{orderno:orderno},
+                success:function(msg){
+                    if(msg == 4) {
+                        alert('支付成功');
+                        location.href = '###';
+                    }
+                }
+            });
+        }
+    }
+```
+**其他curl原因需要检查版本问题了，或者证书，或者是否金庸curl_exec函数，为了安全性服务器有可能禁用这个函数**
+ `' 其他遇到再补充'`  
