@@ -35,6 +35,7 @@
 （11）未收到支付通知的情况，商户后台系统调用【查询订单API】。  
 （12）商户确认订单已支付后给用户发货。  
 
+**几个坑点**
 1. curl 60错误：  
 http://www.mamicode.com/info-detail-923818.html  这里有解决方案，因为curl采用了严格模式，改一下WxApi.class.php就解决  
 2. 微信服务器不回调notify_url  
