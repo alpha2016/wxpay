@@ -1,5 +1,7 @@
 ###wxpay
 
+**这个README.md在其他markdown编辑器中高大上，到了gayhub中显示的挺乱**
+
 #####精简的NATIVE扫码付款  
 !! url访问地址：localhost/wxpay/native.php就可以得到二维码，先修改几个APPID,MCHID,KEY的配置，回调地址为微信服务器可以请求到的域名或者ip都可以
 `' 微信开发推荐：方倍工作室，微信官方文档，大多数的问题官方文档有答案'`  
