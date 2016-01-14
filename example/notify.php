@@ -32,6 +32,7 @@ class PayNotifyCallBack extends WxPayNotify
 	*/
 	public function NotifyProcess($data, &$msg)
 	{
+		// $xml = file_get_contents('php://input');
 		$xml = "<xml>
 		  <appid><![CDATA[wx2421b1c4370ec43b]]></appid>
 		  <attach><![CDATA[支付测试]]></attach>
